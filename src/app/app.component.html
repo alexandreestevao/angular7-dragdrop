@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>{{title}}</h1>
+
+  <div class="list-container">
+
+    <div class="todo-container column-container">
+      <div class="list"
+           cdkDropList
+           #todoList="cdkDropList"
+           [cdkDropListData]="todos"
+           [cdkDropListConnectedTo]="[doingList, doneList]"
+           (cdkDropListDropped)="onDrop($event)">
+        <h2>TO DO</h2>
+        <mat-card *ngFor="let todo of todos" cdkDrag>
+          <mat-card-header>
+            <mat-card-title>{{todo.name}}</mat-card-title>
+            <mat-card-subtitle>{{todo.category}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="doing-container column-container">
+      <div class="list"
+           cdkDropList
+           #doingList="cdkDropList"
+           [cdkDropListData]="doing"
+           [cdkDropListConnectedTo]="[todoList, doneList]"
+           (cdkDropListDropped)="onDrop($event)">
+        <h2>DOING</h2>
+        <mat-card *ngFor="let todo of doing" cdkDrag>
+          <mat-card-header>
+            <mat-card-title>{{todo.name}}</mat-card-title>
+            <mat-card-subtitle>{{todo.category}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="done-container column-container">
+      <div class="list"
+           cdkDropList
+           #doneList="cdkDropList"
+           [cdkDropListData]="done"
+           [cdkDropListConnectedTo]="[todoList, doingList]"
+           (cdkDropListDropped)="onDrop($event)">
+        <h2>DONE</h2>
+        <mat-card *ngFor="let todo of done" cdkDrag>
+          <mat-card-header>
+            <mat-card-title>{{todo.name}}</mat-card-title>
+            <mat-card-subtitle>{{todo.category}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>
